@@ -1,4 +1,3 @@
-
 import os
 import argparse
 import numpy as np
@@ -74,7 +73,7 @@ def save_results(hu_image, lung_image, normalized, output_dir):
 
 
 def show_results(original, hu_image, lung_image, normalized):
-    """Display the image processing stages, starting with the original scan."""
+    """Display and save the image processing stages."""
     fig, axes = plt.subplots(1, 5, figsize=(22, 5))
 
     axes[0].imshow(original, cmap="gray")
@@ -97,6 +96,11 @@ def show_results(original, hu_image, lung_image, normalized):
         ax.axis("off")
 
     plt.tight_layout()
+    
+    # Աυստեղ ավտոմատ պահպանում ենք նկարը results պանակում
+    os.makedirs("results", exist_ok=True)
+    plt.savefig("results/all_stages_comparison.png", dpi=300, bbox_inches='tight')
+    
     plt.show()
 
 
